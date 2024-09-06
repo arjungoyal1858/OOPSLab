@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Marks {
+    int rno;    // Roll number
+    float perc; // Percentage
+public:
+    Marks() : rno(0), perc(0.0) {}
+
+    Marks(int r, float p) : rno(r), perc(p) {}
+
+    // print details
+    void printDetails() const {
+        cout << "Roll Number: " << rno << ", Percentage: " << perc << "%" << endl;
+    }
+};
+
+// Define the Student class
+class Student {
+    Marks objM; // Marks object
+    string name; // Student name
+public:
+    // Method to set student name
+    void setName(const string& n) {
+        name = n;
+    }
+
+    // Method to set and print result using Marks object
+    void printResult(const Marks& m) {
+        objM = m;
+        cout << "Student Name: " << name << endl;
+        objM.printDetails();
+    }
+};
+
+int main() {
+    // Create a Marks object with roll number and percentage
+    Marks obj[2] = {Marks(1, 90),Marks(2,85)};
+
+    // Create a Student object and set the name
+    Student std[2];
+    std[0].setName("A");
+    std[1].setName("B");
+
+    for (int i=0;i<2;i++)
+      {std[i].printResult(obj[i]);}
+
+    return 0;
+}

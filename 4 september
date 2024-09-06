@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class shape {
+    public:
+    virtual int perimeter() = 0;
+    void getwidth(int a) {
+        shape_width = a;
+    }
+    void getlength(int b) {
+        shape_length = b;
+    }
+    protected:
+    int shape_length;
+    int shape_width;
+};
+
+class rectangle : public shape {
+    public:
+    int perimeter() {
+        return 2 * (shape_width + shape_length);
+    }
+};
+
+class square : public shape {
+    public:
+    int perimeter() {
+        return 4 * shape_length;
+    }
+    friend int circle_perimeter(square& obj);
+};
+
+int circle_perimeter(square& obj) {
+    return 2 * 3.14 * obj.shape_length;
+}
+
+int main() {
+    rectangle r;
+    square s;
+    r.getwidth(5);
+    r.getlength(9);
+    cout << "Perimeter of rectangle: " << r.perimeter() << endl;
+    s.getlength(9);
+    cout << "Perimeter of square: " << s.perimeter() << endl;
+    cout<<"perimeter of circle :"<<circle_perimeter(s);
+    return 0;
+}
